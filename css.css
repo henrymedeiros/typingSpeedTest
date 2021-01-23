@@ -10,9 +10,40 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #6441A5 , #2a0845);
+  color: aliceblue;
   
 }
 
-#principal{
-  
+.principal h1, p {
+  margin-bottom: 1rem;
+}
+
+.shell-input{
+  display: flex;
+  justify-content: center;
+}
+
+.input-box{
+  display: flex;
+  border-radius: 4px;
+  outline: none;
+  padding: 0.5rem;
+  border: none;
+  width: 300px;
+  margin-right: 1rem;
+  align-items: center;
+}
+
+.timer{
+  background-color: black;
+  border-radius: 4px;
+  width: 100px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

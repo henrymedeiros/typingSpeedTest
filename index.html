@@ -17,14 +17,22 @@
 <body>
 
     <div class="container">
-        <section id="principal">
-            <h2 id="picked-quote"></h1>
-            <p id ="time-result"></p>
+        <section id="principal" class="principal">
+
+            <h1 id="picked-quote"></h1>
+            <p id="description" class="decription">O tempo começará a ser contabilizado assim que você clicar na caixa de texto e irá parar quando você apertar a tecla "Enter"</p>
+
             <p id="correct-words"></p>
-            <input type="text" value="" id="user-input">
-            </input><br>
-            <button id="start-btn">
-                Começar
+            <p id ="time-result"></p>
+            
+            <div class="shell-input">
+            <div class="input-box">
+                <input type="text" class="input-box" id="user-input">
+                <div id="timer" class="timer"> Tempo </div>
+            </div>
+            </div>
+            <button id="restart-btn" class="restart-btn">
+                Refazer teste
             </button>
         </section>
     </div>

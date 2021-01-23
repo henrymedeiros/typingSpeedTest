@@ -26,7 +26,28 @@ function splitQuote(quote){
 
 }
 
+function renderTime(timeInSeconds){
+   if(timeInSeconds>59){
+      return 0;
+   }
+   let timerElement = document.getElementById("timer");
+   if(timeInSeconds<10){
+      timerElement.innerHTML =  "0:0" + timeInSeconds;
+   }
+   else if(timeInSeconds>9 && timeInSeconds<59){
+      timerElement.innerHTML =  "0:" + timeInSeconds;
+   }
+   
+}
+
+function clearDescription(){
+   let descElem = document.getElementById("description");
+   descElem.innerHTML = "";
+}
+
 renderQuote();
+
+
 let givenQuoteArray = splitQuote(pickedQuote);
 let givenQuoteArrayLength = givenQuoteArray.length;
 
@@ -34,7 +55,7 @@ let givenQuoteArrayLength = givenQuoteArray.length;
 // count time
 let startTime, endTime;
 
-let startBtn = document.getElementById("start-btn");
+let restartBtn = document.getElementById("restart-btn");
 let userInput = document.getElementById("user-input");
 
 
@@ -58,12 +79,20 @@ function getUserAnwser(){
    return userAnwser;
 }
 
+let myTimer;
 userInput.onfocus = function(){
+   let timeInSeconds = 0;
    start();
+   clearDescription();
+   myTimer = setInterval(function(){
+      renderTime(timeInSeconds);
+      timeInSeconds++;
+    }, 1000);
 }
 
 let correctWordsCounter = 0;
 let typedWords = 0;
+
 function compareQuotes(givenQuoteArray, userQuoteArray){
    for(let i=0;i<givenQuoteArrayLength;i++){
       if(givenQuoteArray[i]===userQuoteArray[i]){
@@ -75,15 +104,17 @@ function compareQuotes(givenQuoteArray, userQuoteArray){
 }
 
 function showResults(totalWords, correctWords, typedWords, time,){
+   let wordsPerMinute = (60 * typedWords)/time
+   wordsPerMinute = Math.trunc( wordsPerMinute );
    let correctWordsElement = document.getElementById("correct-words");
    correctWordsElement.innerHTML = "Você acertou " + correctWords + " de " + totalWords + " palavras";
    let timeResultElement = document.getElementById("time-result");
-   timeResultElement.innerHTML = "Você digitou " + typedWords + "palavras em " + time + " segundos"
-
+   timeResultElement.innerHTML = "Sua velocidade de digitação é de aproximadamente " + wordsPerMinute + " palavras por minuto "
 }
 
 
 
+// FUNCTION WHEN ENTER KEY PRESSED
 function checkKey(e) {
    var key = e.which || e.keyCode;
    if (key === 13){
@@ -92,13 +123,18 @@ function checkKey(e) {
       let userAnwser = getUserAnwser();
       let userAnwserArray = splitQuote(userAnwser);
       compareQuotes(givenQuoteArray, userAnwserArray);
-      console.log(givenQuoteArray, userAnwserArray);
       let correctWords = correctWordsCounter;
       let time = end();
+      clearInterval(myTimer); 
       showResults(givenQuoteArrayLength, correctWords, typedWords, time);
       
    }
 }
 
+restartBtn.onclick = function(){
+   window.location.reload();
+}
+
 document.addEventListener("keypress", checkKey);
+
 
