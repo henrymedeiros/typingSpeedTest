@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Source Sans Pro';
 }
 
 /*:root {
@@ -17,6 +18,7 @@
   color: aliceblue;
   
 }
+
 
 .principal h1, p {
   margin-bottom: 1rem;
@@ -46,4 +48,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.restart-btn{
+  margin-top: 2rem ;
+  background-color: aliceblue;
+  width: 300px;
+  height: 50px;
+  border-radius: 8px;
 }
